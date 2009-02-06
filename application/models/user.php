@@ -2,6 +2,33 @@
 
 class User_Model extends Auth_User_Model
 {
+	// Relationships
+	/**
+	 * Has many relationships
+	 *
+	 * @var array
+	 * @access protected
+	 */
+	protected $has_many = array('user_tokens', 'posts', 'comments');
+
+	/**
+	 * Has and belongs to many relationships
+	 *
+	 * @var array
+	 * @access protected
+	 */
+	protected $has_and_belongs_to_many = array('roles', 'tags');
+
+	// Ignored columns
+	/**
+	 * POST columns to ignore when saving
+	 *
+	 * @var array
+	 * @access protected
+	 */
+	protected $ignored_columns = array('password_confirm', 'auth_key');
+
+
 	/**
 	 * Defines the hash method to use
 	 *
@@ -26,19 +53,6 @@ class User_Model extends Auth_User_Model
 			$this->date_created = time();
 
 		return parent::save();
-	}
-
-	/**
-	 * Alias function for validate... maintains CRUD
-	 *
-	 * @param array          array  an array of Key Value pairs, usually POST
-	 * @return boolean
-	 * @access public
-	 * @author Sam Clark
-	 */
-	public function create(array & $array)
-	{
-		return $this->validate($array, TRUE);
 	}
 
 	/**
