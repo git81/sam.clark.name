@@ -4,7 +4,7 @@
  * then a full URL will be used, eg: http://localhost/kohana/. If it only includes
  * the path, and a site_protocol is specified, the domain will be auto-detected.
  */
-$config['site_domain'] = '/kohana/';
+$config['site_domain'] = 'localhost/sam.clark.name/';
 
 /**
  * Force a default protocol to be used by the site. If no site_protocol is
@@ -62,7 +62,7 @@ $config['enable_hooks'] = FALSE;
  *  3 - Notices
  *  4 - Debugging
  */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 4;
 
 /**
  * Message logging directory.
@@ -87,7 +87,7 @@ $config['render_stats'] = TRUE;
  * Filename prefixed used to determine extensions. For example, an
  * extension to the Controller class would be named MY_Controller.php.
  */
-$config['extension_prefix'] = 'MY_';
+$config['extension_prefix'] = 'SCN_';
 
 /**
  * Additional resource paths, or "modules". Each path can either be absolute
@@ -96,13 +96,8 @@ $config['extension_prefix'] = 'MY_';
  */
 $config['modules'] = array
 (
-	// MODPATH.'auth',      // Authentication
-	// MODPATH.'forge',     // Form generation
-	// MODPATH.'kodoc',     // Self-generating documentation
-	// MODPATH.'media',     // Media caching and compression
+	MODPATH.'auth',      // Authentication
+	MODPATH.'morf',     // Morf form library
 	// MODPATH.'gmaps',     // Google Maps integration
-	// MODPATH.'archive',   // Archive utility
-	// MODPATH.'payment',   // Online payments
 	// MODPATH.'unit_test', // Unit testing
-	// MODPATH.'object_db', // New OOP Database library (testing only!)
 );
