@@ -9,7 +9,7 @@ class Post_Model extends ORM_Tree
 	 * @var array
 	 * @access protected
 	 */
-	protected $has_many = array('user_tokens', 'posts', 'comments');
+	protected $has_many = array('comments');
 
 	/**
 	 * Has and belongs to many relationships
@@ -25,7 +25,7 @@ class Post_Model extends ORM_Tree
 	 * @var array
 	 * @access protected
 	 */
-	protected $belongs_to = array('user', 'tags');
+	protected $belongs_to = array('user');
 
 	// Ignored columns
 	/**
@@ -52,7 +52,7 @@ class Post_Model extends ORM_Tree
 			$this->date_created = time();
 
 		if ($tags = Input::instance()->post('tags', FALSE))
-			Tag_Model::factory()->parse($tags, $this);
+			ORM::factory('Tag')->parse($tags, $this);
 
 		return parent::save();
 	}
