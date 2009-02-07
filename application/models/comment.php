@@ -28,7 +28,7 @@ class Comment_Model extends ORM
 	 */
 	public function save()
 	{
-		if ( ! isset($this->date_created))
+		if ( ! isset($this->object['date_created']))
 			$this->date_created = time();
 
 		return parent::save();

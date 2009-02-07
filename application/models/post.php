@@ -48,11 +48,11 @@ class Post_Model extends ORM_Tree
 		if ($this->changed)
 			$this->date_modified = time();
 
-		if ( ! isset($this->date_created))
+		if ( ! isset($this->object['date_created']))
 			$this->date_created = time();
 
-		if ($tags = Input::instance()->post('tags', FALSE))
-			ORM::factory('Tag')->parse($tags, $this);
+		if ( ! isset($this->object['slug']))
+			$this->slug = inflector::underscore(strtolower($this->title));
 
 		return parent::save();
 	}
@@ -68,7 +68,7 @@ class Post_Model extends ORM_Tree
 	{
 		$array = Validation::factory($array)
 			->pre_filter('trim')
-			->add_rules('slug', 'required', 'length[2,50]', 'chars[a-zA-Z0-9_.]', array($this, 'slug_exists'))
+			->add_rules('slug', 'length[2,50]', 'chars[a-zA-Z0-9_.\-]', array($this, 'slug_exists'))
 			->add_rules('title', 'required', 'length[4,150]');
 
 		return parent::validate($array, $save);

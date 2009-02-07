@@ -106,7 +106,7 @@ class ORM extends ORM_Core {
 		{
 			$result = (bool) Database::instance()->from($this->table_name)
 												 ->where($fieldname, $value)
-												 ->count_records();
+												 ->count_records() ? FALSE : TRUE;
 		}
 		
 		return $result;

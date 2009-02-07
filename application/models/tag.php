@@ -121,7 +121,7 @@ class Tag_Model extends ORM
 		$result = FALSE;
 
 		// Test model for tag relationship
-		if ($this->related_object($model)
+		if ($this->related_object($model))
 		{
 			// Format the new tags
 			$tags = self::split_tags($tags, $separator);
